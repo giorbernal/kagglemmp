@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import sys
-sys.path.append('../dsbase/src/main')
+sys.path.append('/opt/dsbase')
 
 from sklearn.model_selection import train_test_split
 from ModelDSBase import ModelDSBaseWrapper
@@ -46,7 +46,7 @@ def train(fold_id):
 	score = abc.getScore()
 
 	# Save model
-	abc.save('models/fold' + fold_id)
+	abc.save('models/fold' + str(fold_id))
 
 	print('Training of fold ' + str(fold_id) + ' finalized!')
 
