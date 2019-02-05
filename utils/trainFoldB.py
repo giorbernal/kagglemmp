@@ -28,13 +28,10 @@ def train(fold_id, df, columns_to_partition):
 	df_y = df['HasDetections']
 	df.drop(labels=['HasDetections'], axis=1, inplace=True)
 
-	# Categorical to Numerical 
-	columns_categorical = df.select_dtypes(include=['object']).columns
-	df_num=pd.get_dummies(data=df,columns=columns_categorical)
 
 	# Training model
 	params = AdaBoostClassificationDSBaseModelParamsToMap(100,1.0)
-	abc = ModelDSBaseWrapper('AB',df_num.values,df_y.values,[30,65,100],0.3,AdaBoostClassificationDSBaseModel,params,splitter=train_test_split)
+	abc = ModelDSBaseWrapper('AB',df.values,df_y.values,[30,65,100],0.3,AdaBoostClassificationDSBaseModel,params,splitter=train_test_split)
 	abc.train()
 
 	# Collecting results
