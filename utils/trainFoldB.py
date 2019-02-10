@@ -44,11 +44,11 @@ def train(fold_id, df):
 
 	return (score,lcabc)
 
-def saveColumnsToPartition(fold_id, df, columns_to_partition):
+def saveColumnsCategorical(fold_id, df, columns_categorical):
 
 	out_path = 'models/fold' + str(fold_id)
 
 	# Save columns partitioned at this fold
-	for c in columns_to_partition:
+	for c in columns_categorical:
 		np.save(out_path + '/' + str(c) + '.sav.npy',df[c].unique())
 
