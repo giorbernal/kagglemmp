@@ -1,12 +1,13 @@
 import numpy as np
 import pandas as pd
 import sys
-sys.path.append('/opt/dsbase')
+sys.path.append('../dsbase/src/main')
 
 from sklearn.model_selection import train_test_split
 from ModelDSBase import ModelDSBaseWrapper
 from AdaBoostClassificationDSBase import AdaBoostClassificationDSBaseModelParamsToMap
 from AdaBoostClassificationDSBase import AdaBoostClassificationDSBaseModel
+from utils.utils import getVector
 
 def train_test(fold_id, df):
 	print('Initiating training of fold ' + str(fold_id) + ' ...')
@@ -52,3 +53,16 @@ def saveColumnsCategorical(fold_id, df, columns_categorical):
 	for c in columns_categorical:
 		np.save(out_path + '/' + str(c) + '.sav.npy',df[c].unique())
 
+def loadColumnsCategorical(fold_id, df, columns_categorical):
+
+	in_path = 'models/fold' + str(fold_id)
+	df_aux = pd.DataFrame([list(map(lambda x: [x], row)) for row in df.values], columns=df.columns)
+
+	# Save columns partitioned at this fold
+	for c in columns_categorical:
+		print('   column "' + c + '" transformation ...')
+		vec = np.load('models/fold' + str(fold_id) + "/" + c + ".sav.npy")
+		df_aux[c]=df_aux[c].apply(lambda x: getVector(x[0],vec))
+
+	df_end = pd.DataFrame([np.concatenate(row) for row in df_aux.values])
+	return df_end		
