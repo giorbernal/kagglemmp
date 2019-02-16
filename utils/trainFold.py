@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import sys
-sys.path.append('../dsbase/src/main')
+sys.path.append('/opt/dsbase')
 
 from sklearn.model_selection import train_test_split
 from ModelDSBase import ModelDSBaseWrapper
