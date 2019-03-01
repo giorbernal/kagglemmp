@@ -5,14 +5,13 @@ if [ $# != 1 ]; then
 	exit -1
 fi
 
-echo "Init consolatino prize process ..."
+echo "Init consolation prize process ..."
 
 PARTS=$1
 
 for (( i=1; i <= $PARTS; ++i ))
 do
 	echo "---------- Init process Part $i ----------"
-	rm -f nohup.out
 	python -u mmp_STEP_Consolation_Prize.py $i
 	echo "---------- End  process Part $i ----------"
 done
