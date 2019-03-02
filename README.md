@@ -26,7 +26,7 @@ The main goal of this analysis was to check the ensembling/stacking procedure. H
 After analyzing kernels from other competitors, we will consider next takeaways for future cases:
 + Take care of the analysis of data and cleaning: It is very important to **understand** the dataset.
 + Analyze train and test data together.
++ Analyze the best way to **clean** nulls (Median and Mode maybe ..., or even keep as a category ) after high-na columns and too skewed columns.
 + Evaluate correlation of variables continuous on one hand and discrete on the other, and remove duplicated if they correlate as well with target. Use *label encoders* for this discrete case
-+ Analyze the best way to **clean** nulls.
-+ When there are a lot of discrete variable, like in this dataset, and word embeddings can not be used, consider seriously the use of sparse matrixes
++ When there are a lot of discrete variable, like in this dataset, and word embeddings can not be used, consider certain things like the use of sparse matrixes or better, avoid one-hot encoding using other discrete encoding technics like target encoding or frecuency encoding (choose those in which the range is higher).
 
