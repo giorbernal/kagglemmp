@@ -25,6 +25,7 @@ The final test evaluation was imposible to compute due to the lack of optimizati
 The main goal of this analysis was to check the ensembling/stacking procedure. However, we have had some perfomance issues and limitations.
 After analyzing kernels from other competitors, we will consider next takeaways for future cases:
 + Take care of the analysis of data and cleaning: It is very important to **understand** the dataset.
++ Optimize memory defining proper dtypes. (i.e: int8 by int16, float32 by float64 ...)
 + Analyze train and test data together.
 + Analyze the best way to **clean** nulls (Median and Mode maybe ..., or even keep as a category ) after high-na columns and too skewed columns.
 + Evaluate correlation of variables continuous on one hand and discrete on the other, and remove duplicated if they correlate as well with target. Use *label encoders* for this discrete case
